@@ -98,50 +98,43 @@ function criarGraficoPizza(elementId, labels, data) {
 }
 
 function criarGraficoLinha(elementId, titulo, dadosMeses) {
-  const ctx = document.getElementById(elementId);
-
-  const categorias = Array.from(new Set(dadosMeses.flat().map(item => item.categoria)));
-  const datasets = categorias.map(categoria => {
-    return {
-      label: categoria,
-      data: dadosMeses.map(mes => {
-        const item = mes.find(item => item.categoria === categoria);
-        return item ? item.valor : 0;
-      }),
-      borderColor: getRandomColor(),
-      fill: false
-    };
-  });
-
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['Mês 1', 'Mês 2', 'Mês 3'],
-      datasets: datasets
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: true,
-          text: titulo
+    const ctx = document.getElementById(elementId);
+  
+    const categorias = Array.from(new Set(dadosMeses.flat().map(item => item.categoria)));
+    const cores = ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'];
+    const datasets = categorias.map((categoria, index) => {
+      return {
+        label: categoria,
+        data: dadosMeses.map(mes => {
+          const item = mes.find(item => item.categoria === categoria);
+          return item ? item.valor : 0;
+        }),
+        borderColor: cores[index],
+        fill: false
+      };
+    });
+  
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Mês 1', 'Mês 2', 'Mês 3'],
+        datasets: datasets
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: titulo
+          }
         }
       }
-    }
-  });
-}
-
-function getRandomColor() {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
+    });
   }
-  return color;
-}
+  
 
 //TESTES
 window.onload = carregarDados;
