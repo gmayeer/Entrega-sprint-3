@@ -4,7 +4,7 @@ let gastosjsVar = []
 let valorjsFix = []
 let valorjsVar = []
 async function carregarDados() {
-  const response = await fetch("./db/dbmayer.json")
+  const response = await fetch("./db/db.json")
   const data = await response.json()
   console.log(data)
   data.mes1.gastosFix.forEach(categoria => gastosjsFix.push(categoria.categoria))

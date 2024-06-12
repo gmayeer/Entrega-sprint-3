@@ -9,7 +9,7 @@ let gastosMes2Var = [];
 let gastosMes3Var = [];
 
 async function carregarDados() {
-  const response = await fetch("./db/dbmayer.json");
+  const response = await fetch("./db/db.json");
   const data = await response.json();
 
   // Inicializar objetos de soma para cada categoria
@@ -73,8 +73,8 @@ async function carregarDados() {
   criarGraficoPizza('pie-chart2', labelsVar, dataVar);
 
   // Configurar gráficos de linha
-  criarGraficoLinha('line-chart1', 'Gastos Fixos', [gastosMes1Fix, gastosMes2Fix, gastosMes3Fix]);
-  criarGraficoLinha('line-chart2', 'Gastos Variáveis', [gastosMes1Var, gastosMes2Var, gastosMes3Var]);
+  criarGraficoLinha('line-chart1', 'Totais', [gastosMes1Fix, gastosMes2Fix, gastosMes3Fix]);
+  criarGraficoLinha('line-chart2', 'Totais', [gastosMes1Var, gastosMes2Var, gastosMes3Var]);
 }
 
 function criarGraficoPizza(elementId, labels, data) {
